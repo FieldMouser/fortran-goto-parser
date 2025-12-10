@@ -88,3 +88,33 @@ function escapeHTML(text) {
     div.textContent = text;
     return div.innerHTML;
 }
+
+/**
+ * Форматирует число с разделителями тысяч
+ */
+function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+/**
+ * Проверяет, является ли строка допустимым именем файла
+ */
+function isValidFileName(name) {
+    const invalidChars = /[<>:"/\\|?*\x00-\x1F]/;
+    const reservedNames = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])$/i;
+    
+    return !invalidChars.test(name) && 
+           !reservedNames.test(name) &&
+           name.length > 0 && 
+           name.length <= 255;
+}
+
+/**
+ * Создает безопасное имя файла
+ */
+function createSafeFileName(name) {
+    return name
+        .replace(/[<>:"/\\|?*\x00-\x1F]/g, '_')
+        .replace(/\.{2,}/g, '.')
+        .trim();
+}

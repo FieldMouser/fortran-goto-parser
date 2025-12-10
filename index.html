@@ -10,8 +10,27 @@
     <div class="container">
         <h1>Fortran GO TO Parser</h1>
         
+        <div class="file-section">
+            <h2>Работа с файлами</h2>
+            <div class="file-controls">
+                <div class="file-input-group">
+                    <label for="fileInput">Загрузить файл (.txt):</label>
+                    <input type="file" id="fileInput" accept=".txt">
+                    <button onclick="loadFile()">Загрузить</button>
+                </div>
+                <div class="file-output-group">
+                    <button onclick="saveOutputAsFile()">Сохранить результат в файл</button>
+                    <button onclick="saveAllResultsAsFile()">Сохранить все результаты</button>
+                </div>
+            </div>
+        </div>
+        
         <div class="input-section">
             <h2>Ввод кода Fortran</h2>
+            <div class="input-controls">
+                <button onclick="clearInput()">Очистить поле ввода</button>
+                <button onclick="loadSample()">Загрузить пример</button>
+            </div>
             <textarea id="fortranInput" placeholder="Введите оператор GO TO Fortran...">
 GO TO 100
 go to 200
@@ -25,12 +44,15 @@ GO 100
             <div class="controls">
                 <button onclick="parseInput()">Разобрать</button>
                 <button onclick="runTests()">Запустить тесты</button>
-                <button onclick="clearOutput()">Очистить</button>
+                <button onclick="clearOutput()">Очистить вывод</button>
             </div>
         </div>
         
         <div class="output-section">
-            <h2>Результат парсинга</h2>
+            <div class="output-header">
+                <h2>Результат парсинга</h2>
+                <div class="output-info" id="outputInfo"></div>
+            </div>
             <div id="output" class="output-container"></div>
         </div>
         
@@ -48,6 +70,7 @@ GO 100
     <script src="error-handler.js"></script>
     <script src="lexer.js"></script>
     <script src="parser.js"></script>
+    <script src="file-handler.js"></script>
     <script src="test.js"></script>
     <script src="main.js"></script>
 </body>

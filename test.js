@@ -143,5 +143,29 @@ function createTestSuite() {
     return testRunner;
 }
 
+function createTestFile() {
+    const testContent = `C Тестовый файл Fortran
+GO TO 100
+go to 200
+GO TO (10, 20, 30), I
+GO TO (100, 200), 2
+GO TO VAR
+C Это комментарий
+GO TO 300
+GO 100
+GO TO (10, 20 30), I`;
+    
+    const blob = new Blob([testContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    
+    return {
+        content: testContent,
+        url: url,
+        name: 'test_fortran.txt'
+    };
+}
+
 // Экспорт для использования в основном модуле
 const testSuite = createTestSuite();
+window.testSuite = testSuite;
+window.createTestFile = createTestFile;
