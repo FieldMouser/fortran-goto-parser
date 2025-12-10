@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortran GO TO Parser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Fortran GO TO Parser</h1>
+        
+        <div class="input-section">
+            <h2>Ввод кода Fortran</h2>
+            <textarea id="fortranInput" placeholder="Введите оператор GO TO Fortran...">
+GO TO 100
+go to 200
+GO TO (10, 20, 30), I
+GO TO (100, 200), 2
+GO TO VAR
+GO TO (10, 20 30), I
+GO 100
+            </textarea>
+            
+            <div class="controls">
+                <button onclick="parseInput()">Разобрать</button>
+                <button onclick="runTests()">Запустить тесты</button>
+                <button onclick="clearOutput()">Очистить</button>
+            </div>
+        </div>
+        
+        <div class="output-section">
+            <h2>Результат парсинга</h2>
+            <div id="output" class="output-container"></div>
+        </div>
+        
+        <div class="info-section">
+            <h3>Поддерживаемые конструкции:</h3>
+            <ul>
+                <li><strong>Безусловный переход:</strong> GO TO метка (пример: GO TO 100)</li>
+                <li><strong>Вычисляемый GO TO:</strong> GO TO (метка1, метка2, ...), выражение</li>
+                <li><strong>Назначенный GO TO:</strong> GO TO переменная</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="utils.js"></script>
+    <script src="error-handler.js"></script>
+    <script src="lexer.js"></script>
+    <script src="parser.js"></script>
+    <script src="test.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
